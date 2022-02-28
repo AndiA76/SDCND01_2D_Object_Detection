@@ -1,5 +1,7 @@
 # Instructions
 
+Copyright @ Udacity
+
 ## Requirements
 
 * NVIDIA GPU with the latest driver installed
