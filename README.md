@@ -1,8 +1,6 @@
 # Object Detection in an Urban Environment
 
-Project 1 of Udacity's "Self-Driving Car Engineer" Nanodegree Program about 2D Object Detection in an Urban Environment using Waymo Open Dataset focusing on exploratory experiments using TensorFlow's Object Detection API.
-
-Copyright @ Andreas Albrecht 
+Computer vision project submission 1 of Udacity's "Self-Driving Car Engineer" Nanodegree Program about 2D Object Detection in an Urban Environment using Waymo Open Dataset focusing on exploratory experiments using TensorFlow's Object Detection API. This project has been developed based on the [starter code](https://github.com/udacity/nd013-c1-vision-starter) provided by Udacity. 
 
 ## Introduction
 
@@ -62,7 +60,7 @@ The project directory itself is structured as follows:
 ```
 /app/project/build/ - contains the files to build the docker environment for this project
 /app/project/data/ - contains the waymo data after download and processing (empty at the beginning)
-/app/project/experiments/ - contains the training experiments incl. model checkpoints an results (empty at the beginning)
+/app/project/experiments/ - contains the training scripts and experiments incl. model checkpoints an results (empty at the beginning)
 /app/project/thirdparty/ - contains a modified a tutorial how to access and visualize waymo data
 /app/project/ - contains the source files
 ```
@@ -70,29 +68,37 @@ The project directory itself is structured as follows:
 ```
 /app/project/thirdparty/
     - Explore_Raw_TFRecordFile.ipynb - modified tutorial that shows how to access and visualize waymo data
+/app/project/experiments/
+    - exporter_main_v2.py - script that comes with TF Object Detection API to export a model as a frozen graph
+    - export_model.sh - bash script to export a model
+    - label_map.pbtxt - label map file covering the classes "vehicle", "pedestrian" and "cyclist"
+    - model_main_tf2.py - script that comes with tF Object Detection APIA to launch a training or an evaluation process
+    - train_and_evaluate_model.sh - bash script to sequentially run a training and an evaluation process in the same terminal
 /app/project/
-    - Exploratory_Data_Analysis.ipynb - exploratory data analysis of stripped and downsampled training and validation data
-    - Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb - exploratory data analysis of the original data set
-    - Explore_Augmentations.ipynb - exploratory analysis of data augmentations options of the training pipeline
-    - Explore_TF_Default_Augmentations.ipynb - exploratory analysis of augmentation options supported by TF Object Detection API     - export_model.sh - bash script to export a model
     - create_inference_videos.sh - bash script to create an inference video
     - create_splits.py - script to split a dataset into train and val subsets or train, val and test subsets by a given ratio
     - download_and_process_tfrecords.py - script to download and process a set of tfrecord files from Waymo's open data set
     - download_tfrecords.py - script to only download the a set of tfrecord files frmo Waymo's open data set
     - edit_config.py - script to help modifying the pipeline.config file
-    - Experimental_Results.md - writeup and comments to exerimental results
-    - filenames.txt - list of available tfrecord files in Waymo's open data set
-    - inference_video.py
+    - Experimental_Results.md - writeup of the transfer learning experimental results
+    - Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb - exploratory data analysis of the original data set
+    - Exploratory_Data_Analysis_Part1.ipynb - exploratory data analysis (part 1) of stripped and downsampled training and validation data
+    - Exploratory_Data_Analysis_Part2.ipynb - exploratory data analysis (part 2) of stripped and downsampled training, validation and test subsets
+    - Explore_Augmentations.ipynb - exploratory analysis of data augmentations options of the training pipeline
+    - Explore_TF_Default_Augmentations.ipynb - exploratory analysis of augmentation options supported by TF Object Detection API
+    - filenames.txt - list of source links to available tfrecord files in the Waymo open dataset
+    - filenames_test.txt - list of source links to the tfrecord files selected to be part of the test set
+    - filenames_train_and_val.txt - list of source links to the tfrecord files selected to be part of the training and validation set
+    - inference_video.py - script to create inference videos using a trained SSD model
     - label_map.pbtxt - label map file covering the classes "vehicle", "pedestrian" and "cyclist"
     - pipeline.config - default pipeline config file for "ssd_resnet50_v1_fpn_keras"
     - process_tfrecords.py - script to strip and downsample a set of tfrecord files using a user-specified downsampling rate
     - README.md - this readme file
-    - train_and_evaluate_model.sh - bash script to sequentially run a training and an evaluation process in the same terminal
     - utils.py - utility functions
 ```
-The bash sripts are meant to ease entering longer commands with many arguments. You can modify the bash script according to the command you want to run. Then double-check, save and run the bash script, e.g.:
+The bash sripts are meant to ease entering longer commands with many arguments or to run a command / script multiple times. You can modify the bash script according to the command you want to run. Then double-check, save and run the bash script, e.g.:
 ```
-bash -i ./train_and_evaluate_model.sh
+bash -i ./create_inference_videos.sh
 ```
 
 
@@ -187,9 +193,9 @@ Hints:
 ### Dataset Analysis
 As we loose information when stripping the data we first want to analyse the original Waymo data directly after download and before stripping and downsampling. This also gives a clear overview on the number of availabel images. The following modified third party tutorial gives an overview how to access the raw Waymo data [Explore_Raw_TFRecordFile.ipynb](./third_party/Explore_Raw_TFRecordFile.ipynb). The analysis results of the raw Waymo data can be found in this notebook [Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb](./Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb). It also contains a day / night analysis of the training, validation and test data sets.
 
-After stripping and downsampling the raw tfrecords we perform another exporatory data analysis on the training and validation data (before splitting). This analysis can be found in this notebook [Exploratory_Data_Analysis.ipynb](./Exploratory_Data_Analysis.ipynb). 
+After stripping and downsampling the raw tfrecords we perform another exporatory data analysis on the training and validation data (before splitting). This analysis can be found in this notebook [Exploratory_Data_Analysis.ipynb](./Exploratory_Data_Analysis_Part1.ipynb). 
 
-A third analysis and comparison of the training, validation and test data sets is done after splitting using this noteboook [Train_Val_Test_Data_Analysis.ipynb](./Train_Val_Test_Data_Analysis.ipynb) in order to see if we have similar distributions of image and object properties over the different data set.
+Another exporatory data analysis is done on the training, validation and test data sets after splitting in order to compare their statistical contents using this noteboook [Exploratory_Data_Analysis_Part2.ipynb](./Exploratory_Data_Analysis_Part2.ipynb). Ideally, each of the three data subsets should contain all relevant data aspects and have similar distribution of image and object properties as the other data subsets.
 
 ### Cross-Validation Concept and Data Split
 The training and evaulation pipeline takes two sets of tfrecord files as input data for training and for evaluation, or cross-validation, respectively. If we don't break up all tfrecord files and mix all the images beforehand in order to create new mixed tfrecords for training and evaluation with a better balanced  distribution of data and object features we can only split among the existing tfrecord files. Here we choose the latter and easier option. We will just randomly split into subsets among the existing tfrecord files knowing that this may not lead to an optimal balance of data feature distribution in training, validation and test set. As we start with a fully pre-trained object detector just changing the number and types of object classes it should be sufficient to have a smaller training data set. We can leave a bit more for cross-validation. In this case, let's choose a split of approximately 5 : 1. So we randomly split the 97 tfrecord files into 82 files for training and 15 files for evaluation, or cross-validation, respectively. As this project only focuses on exploring some basic capabilities of TensorFlow Object Detection API without having the intention to optimize an object detection model this simple strategy should do for this purpose. However, this simple data strategy is certainly not sufficient for a real application!
@@ -242,13 +248,13 @@ First, let's download the [pretrained model and weights](http://download.tensorf
 
 You need to edit the config file to change the location of the training and validation tfrecord files, as well as the location of the label_map file and the pretrained weights. You also need to adjust the batch size. To do so, e.g. run the following command (adjust the parameters as you need):
 ```
-python edit_config.py --train_dir /app/project/data/waymo/train/ --eval_dir /app/project/data/waymo/val/ --batch_size 4 --checkpoint /app/project/experiments/pretrained_model/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0 --label_map label_map.pbtxt
+python edit_config.py --train_dir /app/project/data/waymo/train/ --eval_dir /app/project/data/waymo/val/ --batch_size 4 --checkpoint /app/project/experiments/pretrained_model/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0 --label_map /app/project/label_map.pbtxt
 ```
 A new config file has been created, `pipeline_new.config`. Plase rename it and move it to the corresponding experiments folder (s. Model Training).
 
 ### Model Training and Evaluation
 
-We will now do an experiment using Tensorflow Object Detection API. We move the newly created `pipeline_new.config` to a subfolder of our current experiment, e.g. `/app/project/experiments/experiment_0_00` with an index of our choice and rename the pipeline config accoringly, e.g. `pipeline_experiment_0_00.config`. Then we launch the training process:
+We will now do an experiment using Tensorflow Object Detection API. We move the newly created `pipeline_new.config` to a subfolder of our current experiment, e.g. `/app/project/experiments/experiment_0_00` with an index of our choice and rename the pipeline config accoringly, e.g. `pipeline_experiment_0_00.config`. Then we change to the `experiments`folder and launch the training process:
 ```
 python model_main_tf2.py \
   --pipeline_config_path {path to the pipeline.config file} \
@@ -279,8 +285,9 @@ set CUDA_VISIBLE_DEVICES="" # use CPU => set no CUDA visible devices
 ```
 before running the evaluation command.
 
-**Note**: Both training and evaluation will display some Tensorflow warnings, which can be ignored. You may have to kill the evaluation script manually using
-`CTRL+C` as it will keep on waiting for further checkpoints.
+If you don't want to write lengthy commands you can also use the following bash script to ease your life and launch a model training and evaluation process: `train_and_evaluate_model.sh`.
+
+**Note**: Both training and evaluation will display some Tensorflow warnings, which can be ignored. You may have to kill the evaluation script manually using `CTRL+C` as it will keep on waiting for further checkpoints.
 
 The evaluation metrics can be configured in the `pipeline.config` file in the section `eval_config {}`. The [eval.proto](https://github.com/tensorflow/models/blob/master/research/object_detection/protos/eval.proto) file contains the configurable evaluation options. However, not all of them seem to be supported in all possible cases. By default, the `pipeline.config` that comes with the SSD Resnet 50 640x640 (RetinaNet50) TensorFlow model uses "coco_detection_metrics".
 ```
@@ -296,7 +303,7 @@ eval_config {
   ...
 }
 ```
-To monitor the training, you can launch a tensorboard instance by running `python -m tensorboard.main --logdir experiments/reference/`. It will output a link which you can open in a browser window to visualize the tensor board.
+To monitor the training, you can launch a tensorboard instance by running `python -m tensorboard.main --logdir ./reference/` in the `experiments` folder. It will output a link which you can open in a browser window to visualize the tensor board.
 
 
 ### Training Experiments using Different Options of TF Object Detection API
@@ -307,16 +314,17 @@ The experimental model training results are organized as follow:
     - pretrained_models/ - contains the extracted pretrained model files
     - experiment_0_00...09/ - contains trained model checkpoints and evaluation results using SSD Resnet 50 640x640 (RetinaNet50)
     - experiment_1_00...02/ - contains trained model checkpoints and evaluation results using EfficientDet D1 640x640
-/app/project/
-    - exporter_main_v2.py - script to create an inference model as a frozen graph
-    - model_main_tf2.py - script to launch a training or an evaluation process
-    - label_map.pbtxt - label map
+    - exporter_main_v2.py - script that comes with TF Object Detection API to export a model as a frozen graph
+    - export_model.sh - bash script to export a model
+    - label_map.pbtxt - label map file covering the classes "vehicle", "pedestrian" and "cyclist"
+    - model_main_tf2.py - script that comes with tF Object Detection APIA to launch a training or an evaluation process
+    - train_and_evaluate_model.sh - bash script to sequentially run a training and an evaluation process in the same terminal
 ```
 The experimental training and evaluation results are documented in [Experimental_Results.md](./Experimental_Results.md).
 
 ### Improve the Performance
 
-When retraining SSD Resnet 50 640x640 (RetinaNet50) on the selected Waymo training set using the three classes "vehicle", "pedestrian" and "cyclist" and the configuration that comes with pretrained model without changing any further options we obtain a clear improvement compared to the initial model on the validation and the test set, but the mean average precision (mAP) do not seem to be optimal. There are still a lot of False Positive and False Negative detections when creating inference videos on arbitrary tfrecord files. There are multiple options to improve the training results, e.g.:
+When retraining SSD Resnet 50 640x640 (RetinaNet50) on the selected Waymo training set using the three classes "vehicle", "pedestrian" and "cyclist" and the configuration that comes with pretrained model without changing any further options we obtain a clear improvement compared to the initial model on the validation and the test set, but the mean average precision (mAP) do not seem to be optimal. There are still a lot of False Positive and False Negative detections when creating inference videos on arbitrary tfrecord files. Besides using a larger and much better structured or balanced training data set, there are multiple options to improve the training results, e.g.:
 * find the optimal optimizer, learning rate and scheduler
 * increase number of training steps or epochs
 * increase batch size
@@ -332,7 +340,7 @@ The experimental results of improving the model performance are documented in [E
 ### Model Inference
 
 #### Export the Trained Model
-In order to perform inference without the dependencies of the training environment we need to export a frozen graph of our trained model. THis can be done using the script `exporter_main_v2.py` Modify the arguments of the following function to adjust it to your models:
+In order to perform inference without the dependencies of the training environment we need to export a frozen graph of our trained model. THis can be done by running the script `exporter_main_v2.py` in the `experiments`folder. You need to modify the arguments of the following command to adjust it to your models:
 
 ```
 python exporter_main_v2.py \ 
@@ -346,7 +354,7 @@ e.g.
 python exporter_main_v2.py --input_type image_tensor --pipeline_config_path /app/project/experiments/experiment_0_00/pipeline_experiment_0_00.config --trained_checkpoint_dir /app/project/experiments/experiment_0_00/model_checkpoints --output_directory /app/project/experiments/experiment_0_00/exported_model/
 ```
 
-This should create a new folder `experiments/reference/exported/saved_model`. You can read more about the Tensorflow SavedModel format [here](https://www.tensorflow.org/guide/saved_model).
+This should create a new folder `/app/project/experiments/reference/exported/saved_model`. You can read more about the Tensorflow SavedModel format [here](https://www.tensorflow.org/guide/saved_model). If you don't want to write lengthy commands you can also use the following bash script to export a model checkpoint as a frozen graph: `export_model.sh`.
 
 ####  Creating an Animation
 
@@ -363,3 +371,4 @@ e.g.
 ```
 python inference_video.py --labelmap_path ./label_map.pbtxt --model_path ./experiments/experiment_0_00/exported_model/saved_model/ --tf_record_path /app/project/data/waymo/val/segment-10241508783381919015_2889_360_2909_360_with_camera_labels.tfrecord --config_path ./experiments/experiment_0_00/pipeline_experiment_0_00.config --output_path ./experiments/experiment_0_00/inference/videos/val/segment-10241508783381919015_2889_360_2909_360.gif
 ```
+If you don't want to write lengthy commands or if you want to create inference videos on a larger set of tfrecord files in a folder you can also use the following bash script: `create_inference_videos.sh`.
