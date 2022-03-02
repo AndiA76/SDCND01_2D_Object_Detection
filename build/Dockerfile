@@ -1,4 +1,4 @@
-# Copyright @ Udacity
+# Copyright © 2012 - 2021, Udacity, Inc.
 ARG UBUNTU_VERSION=20.04
 
 ARG ARCH=
