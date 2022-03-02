@@ -14,6 +14,8 @@ This project focuses on exploring some basic capabilities of TensorFlow Object D
 
 ### Installation Instructions and Requirements
 
+Before you start please ensure that you have [git](https://github.com/git-guides/install-git) and [git-lfs](https://github.com/git-lfs/git-lfs#getting-started) installed on your system. Clone this repository to a location of your choice.
+
 For local setup if you have your own Nvidia GPU, you can use the provided Dockerfile and requirements in the [build directory](./build).
 
 Follow [the README therein](./build/README.md) to create a docker container called `project-dev`and install all prerequisites.
