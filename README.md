@@ -201,7 +201,7 @@ Hints:
 ### Dataset Analysis
 As we loose information when stripping the data we first want to analyse the original Waymo data directly after download and before stripping and downsampling. This also gives a clear overview on the number of availabel images. The following modified third party tutorial gives an overview how to access the raw Waymo data [Explore_Raw_TFRecordFile.ipynb](./third_party/Explore_Raw_TFRecordFile.ipynb). The analysis results of the raw Waymo data can be found in this notebook [Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb](./Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb). It also contains a day / night analysis of the training, validation and test data sets.
 
-After stripping and downsampling the raw tfrecords we perform another exporatory data analysis on the training and validation data (before splitting). This analysis can be found in this notebook [Exploratory_Data_Analysis.ipynb](./Exploratory_Data_Analysis_Part1.ipynb). 
+After stripping and downsampling the raw tfrecords we perform another exporatory data analysis on the training and validation data (before splitting). This analysis can be found in this notebook [Exploratory_Data_Analysis_Part1.ipynb](./Exploratory_Data_Analysis_Part1.ipynb). 
 
 Another exporatory data analysis is done on the training, validation and test data sets after splitting in order to compare their statistical contents using this noteboook [Exploratory_Data_Analysis_Part2.ipynb](./Exploratory_Data_Analysis_Part2.ipynb). Ideally, each of the three data subsets should contain all relevant data aspects and have similar distribution of image and object properties as the other data subsets.
 
