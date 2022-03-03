@@ -773,29 +773,24 @@ Data augmentation settings: similar to experiment_0_09
 
 ### Summary
 In summary, a set of transfer learning experiments has been done using two different SSD models re-trained on a very small selected Waymo training data set. In general, the overall performance on our very small training data set is rather low. If much more data had been used the results would surely be better. This could be achieved by using the whole available Waymo dataset and not just a sub-set. With respect to data augmentation, cropping and resizing, flipping and rotation have a stronger effect in inducing variety than just augmentation of color values as this also increases the variety of the trained spectrum of SSD anchor box aspect ratios.
-As we do not target optimizing the performance of a SSD model, but rather experimenting with TensorFlow Object Detection API, model performnce is of second rank. Over all conducted experiments, experiment_0_08 and experiment_1_00 showed the best results on validation set so far. What is more, compared to eperiment_0_00...09 we also have a nonzero AP@0.5IOU detection performance for cyclists in experiment_1_00...02.
+As we do not target optimizing the performance of a SSD model in this project, but rather experimenting with TensorFlow Object Detection API, model performnce is of second rank. Over all conducted experiments, experiment_0_08 and experiment_1_00 showed the best results on validation set so far. What is more, compared to eperiment_0_00...09 we also have a nonzero AP@0.5IOU detection performance for cyclists in experiment_1_00...02.
 
 ## Inference
 
 ### Export the model and infer on test video sequences
-To see and evaluate the achieved detection performance, the final model checkpoint of each experiment is exported as a frozen graph in order to perform inference on some test videos. By using a frozen graph, inference can be performed without the need of an installed TensorFlow training environment. As the model from experiment_1_00 has shown the best overall results compared with the other experiments including the detection of cyclists, we only show the videos of this model in the following.
+In order to get a visual grasp of the achieved detection performance inference videos are created on the tfrecord files. Therefore, the final model checkpoint of each experiment is exported as a frozen graph in order to perform inference on some test videos without the need of having a full TensorFlow training environment installed.
 
 #### Experiment_1_00
+As the re-trained model from experiment_1_00 has shown the best overall results compared to the other experiments including detection of cyclists, some inference videos are provided as examples in this repository. Please follow the links below to watch them.
 
-<img src="./experiments/experiment_1_00/segment-10072231702153043603_5725_000_5745_000.mp4" width="700" height="400" />
-
-*Fig. 13.1: Inference on test video sequence id 10072231702153043603 (downsampled by a factor of 10) using exported model from experiment_1_00*
+Video example 1: [Inference on test video sequence id 10072231702153043603 (downsampled by a factor of 10) using exported model from experiment_1_00](./experiments/experiment_1_00/inference/videos/test/segment-10072231702153043603_5725_000_5745_000.mp4)
 
 In the first test video sequence, we have a country road scenario with only a moderate number of other vehicles. Detection works in principle, but some objects are missed - especially when they are rather further away from our ego vehicle. If they come closer detection performance increases. Although most of the objects in the video sequences are detected correctly, detection confidence is quite low, or lower than 50 %, respectively. This should be improved. Adding more suitable data samples would help.
 
-<img src="./experiments/experiment_1_00/segment-12012663867578114640_820_000_840_000.mp4" width="700" height="400" />
+Video example 2: [Inference on test video sequence id 12012663867578114640 (downsampled by a factor of 10) using exported model from experiment_1_00](./experiments/experiment_1_00/segment-12012663867578114640_820_000_840_000.mp4)
 
-*Fig. 13.2: Inference on test video sequence id 12012663867578114640 (downsampled by a factor of 10) using exported model from experiment_1_00*
+The second test video sequence shows a complex urban scenario with many traffic participants. Object detection seems to work well in principle here, but detection performance is quite low for some objects (< 50 %), which means the detected objects are likely not considered objects of the respective class depending on the thresholds. This should to be improved, for course.
 
-The second test video sequence shows a complex urban scenario with many traffic participants. Object detection works well here, but detection performance is very low for quite some objects (< 50 %), which means the detected object is probably not an object of the respective class. This should to be improved, for course.
+Video example 3: [Inference on test video sequence id 12200383401366682847 (downsampled by a factor of 10) using exported model from experiment_1_00](./experiments/experiment_1_00/segment-12200383401366682847_2552_140_2572_140.mp4)
 
-<img src="./experiments/experiment_1_00/segment-12200383401366682847_2552_140_2572_140.mp4" width="700" height="400" />
-
-*Fig. 13.3: Inference on test video sequence id 12200383401366682847 (downsampled by a factor of 10) using exported model from experiment_1_00*
-
-The third test video sequences shwos an urban scenario at night with a moderate number of traffic participants. Most of the objects are detected, except for some oncoming cars with their headlights on. They are often detected quite late compared to parking cars, which are not so safety relevant. It is good to see that object detection also works in principle at nighttime, however, a non-neglectible number of objects are detected with a confidence less than 50 %. So there is quite some room for further improvements.
+The third test video sequences shwos an urban scenario at night with a moderate number of traffic participants. Most of the objects are detected, except for some oncoming cars with their headlights on. They are often detected quite late compared to parking cars, which are not so safety relevant. It is good to see that object detection also works in principle at nighttime, however, some relevant objects are overlooked and a non-neglectible number of objects are detected with a confidence less than 50 %. So there is quite some room for further improvements. The major leverage would be in this case to significantly increase the training data set and its variety and coverage with respect to target domain.
