@@ -54,9 +54,11 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 ```
 
 <img src="./experiments/experiment_0_00/results/experiment_0_00_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 0.1: Visualization of training and evaluation results on TensorBoards for experiment_0_00*
 
 <img src="./experiments/experiment_0_00/results/experiment_0_00_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 0.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_00*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -65,6 +67,7 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 | Loss/classification_loss | 0.4010 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0476 |
 | Loss/regularization_loss | 1.0733 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0312 |
 | Loss/total_loss | 1.9319 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 0.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_00*
 
 *Discussion:*
@@ -87,9 +90,11 @@ Evalution metrics set: "pascal_voc_detection_metrics"
 Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_640x640_coco17_tpu-8
 
 <img src="./experiments/experiment_0_01/results/experiment_0_01_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 1.1: Visualization of training and evaluation results on TensorBoards for experiment_0_01*
 
 <img src="./experiments/experiment_0_01/results/experiment_0_01_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 1.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_01*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -98,6 +103,7 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 | Loss/classification_loss | 0.3568 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0585 |
 | Loss/regularization_loss | 0.1836 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0707 |
 | Loss/total_loss | 0.9558 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 1.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_01*
 
 *Discussion:*
@@ -118,9 +124,11 @@ Evalution metrics set: "pascal_voc_detection_metrics"
 Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_640x640_coco17_tpu-8
 
 <img src="./experiments/experiment_0_02/results/experiment_0_02_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 2.1: Visualization of training and evaluation results on TensorBoards for experiment_0_02*
 
 <img src="./experiments/experiment_0_02/results/experiment_0_02_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 2.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_02*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -129,6 +137,7 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 | Loss/classification_loss | 0.3721 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0723 |
 | Loss/regularization_loss | 0.1341 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.1584 |
 | Loss/total_loss | 0.9220 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 2.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_02*
 
 *Discussion:*
@@ -150,9 +159,11 @@ Evalution metrics set: "pascal_voc_detection_metrics"
 Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_640x640_coco17_tpu-8
 
 <img src="./experiments/experiment_0_03/results/experiment_0_03_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 3.1: Visualization of training and evaluation results on TensorBoards for experiment_0_03*
 
 <img src="./experiments/experiment_0_03/results/experiment_0_03_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 3.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_03*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -161,6 +172,7 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 | Loss/classification_loss | 13.1453 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0008 |
 | Loss/regularization_loss | 0.2624 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0000 |
 | Loss/total_loss | 14.3748 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 3.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_03*
 
 *Discussion:* 
@@ -208,9 +220,11 @@ Evalution metrics set: "pascal_voc_detection_metrics"
 Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_640x640_coco17_tpu-8
 
 <img src="./experiments/experiment_0_04/results/experiment_0_04_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 4.1: Visualization of training and evaluation results on TensorBoards for experiment_0_04*
 
 <img src="./experiments/experiment_0_04/results/experiment_0_04_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 4.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_04*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -219,6 +233,7 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 | Loss/classification_loss | 0.3590 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0677 |
 | Loss/regularization_loss | 0.2263 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.1548 |
 | Loss/total_loss | 0.9783 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 4.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_04*
 
 *Discussion:* 
@@ -256,9 +271,11 @@ Evalution metrics set: "pascal_voc_detection_metrics"
 Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_640x640_coco17_tpu-8
 
 <img src="./experiments/experiment_0_05/results/experiment_0_05_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 5.1: Visualization of training and evaluation results on TensorBoards for experiment_0_05*
 
 <img src="./experiments/experiment_0_05/results/experiment_0_05_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 5.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_05*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -267,6 +284,7 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 | Loss/classification_loss | 0.3793 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0544 |
 | Loss/regularization_loss | 0.5891 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0545 |
 | Loss/total_loss | 1.4328 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 5.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_05*
 
 *Discussion:* 
@@ -342,9 +360,11 @@ Data augmentation setting:
 ```
 
 <img src="./experiments/experiment_0_06/results/experiment_0_06_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 6.1: Visualization of training and evaluation results on TensorBoards for experiment_0_06*
 
 <img src="./experiments/experiment_0_06/results/experiment_0_06_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 6.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_06*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -353,6 +373,7 @@ Data augmentation setting:
 | Loss/classification_loss | 0.3577 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0498 |
 | Loss/regularization_loss | 0.5723 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0637 |
 | Loss/total_loss | 1.3822 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 6.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_06*
 
 *Discussion:* 
@@ -404,9 +425,11 @@ Data augmentation setting:
 ```
 
 <img src="./experiments/experiment_0_07/results/experiment_0_07_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 7.1: Visualization of training and evaluation results on TensorBoards for experiment_0_07*
 
 <img src="./experiments/experiment_0_07/results/experiment_0_07_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 7.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_07*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -415,6 +438,7 @@ Data augmentation setting:
 | Loss/classification_loss | 0.3381 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0545 |
 | Loss/regularization_loss | 0.8293 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0870 |
 | Loss/total_loss | 1.6010 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 7.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_07*
 
 *Discussion:* 
@@ -466,9 +490,11 @@ Data augmentation setting:
 ```
 
 <img src="./experiments/experiment_0_08/results/experiment_0_08_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 8.1: Visualization of training and evaluation results on TensorBoards for experiment_0_08*
 
 <img src="./experiments/experiment_0_08/results/experiment_0_08_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 8.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_08*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -477,6 +503,7 @@ Data augmentation setting:
 | Loss/classification_loss | 0.2656 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0726 |
 | Loss/regularization_loss | 0.1826 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.2354 |
 | Loss/total_loss | 0.8106 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 8.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_08*
 
 *Discussion:* 
@@ -515,9 +542,11 @@ Evalution metrics set: "pascal_voc_detection_metrics"
 Data augmentation setting: same as in experiment_0_06
 
 <img src="./experiments/experiment_0_09/results/experiment_0_09_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 9.1: Visualization of training and evaluation results on TensorBoards for experiment_0_09*
 
 <img src="./experiments/experiment_0_09/results/experiment_0_09_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 9.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_0_09*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -526,6 +555,7 @@ Data augmentation setting: same as in experiment_0_06
 | Loss/classification_loss | 0.2860 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0728 |
 | Loss/regularization_loss | 0.1932 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.2257 |
 | Loss/total_loss | x.x | 0.8288 | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+
 *Table 9.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_09*
 
 *Discussion:* 
@@ -566,9 +596,11 @@ Data augmentation settings: default settings from efficientdt_d1_coco17_tpu-32
 ```
 
 <img src="./experiments/experiment_1_00/results/experiment_1_00_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 10.1: Visualization of training and evaluation results on TensorBoards for experiment_1_00*
 
 <img src="./experiments/experiment_1_00/results/experiment_1_00_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 10.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_1_00*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -577,6 +609,7 @@ Data augmentation settings: default settings from efficientdt_d1_coco17_tpu-32
 | Loss/classification_loss | 0.2839 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0678 |
 | Loss/regularization_loss | 0.0286 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.2867 |
 | Loss/total_loss | 0.3285 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | 0.0623 |
+
 *Table 10.1: Evaluation results on validation set at step 30000 using Pascal VOC metrics for experiment_1_00*
 
 *Discussion:* 
@@ -612,9 +645,11 @@ Evalution metrics set: "pascal_voc_detection_metrics"
 Data augmentation settings: default settings from efficientdt_d1_coco17_tpu-32 as in experiment_1_00
 
 <img src="./experiments/experiment_1_01/results/experiment_1_01_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 11.1: Visualization of training and evaluation results on TensorBoards for experiment_1_01*
 
 <img src="./experiments/experiment_1_01/results/experiment_1_01_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 11.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_1_01*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -623,6 +658,7 @@ Data augmentation settings: default settings from efficientdt_d1_coco17_tpu-32 a
 | Loss/classification_loss | 0.3915 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0584 |
 | Loss/regularization_loss | 0.0417 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.1582|
 | Loss/total_loss | 0.4514 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | 0.0008 |
+
 *Table 11.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_1_01*
 
 *Discussion:* 
@@ -715,9 +751,11 @@ Data augmentation settings: similar to experiment_0_09
 ```
 
 <img src="./experiments/experiment_1_02/results/experiment_1_02_TensorBoard_Screenshot.png" width="700" height="400" />
+
 *Fig. 12.1: Visualization of training and evaluation results on TensorBoards for experiment_1_02*
 
 <img src="./experiments/experiment_1_02/results/experiment_1_02_eval_side_by_side_8_0.png" width="700" height="400" />
+
 *Fig. 12.2: Side-by-side comparison of model inference on a sample image before and after retraining for experiment_1_02*
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
@@ -726,6 +764,7 @@ Data augmentation settings: similar to experiment_0_09
 | Loss/classification_loss | 0.2696 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0697 |
 | Loss/regularization_loss | 0.0292 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.2756 |
 | Loss/total_loss | 0.3155 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | 0.0328 |
+
 *Table 12.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_1_02*
 
 *Discussion:* 
@@ -744,16 +783,19 @@ To see and evaluate the achieved detection performance, the final model checkpoi
 #### Experiment_1_00
 
 <img src="./experiments/experiment_1_00/segment-10072231702153043603_5725_000_5745_000.mp4" width="700" height="400" />
+
 *Fig. 13.1: Inference on test video sequence id 10072231702153043603 (downsampled by a factor of 10) using exported model from experiment_1_00*
 
 In the first test video sequence, we have a country road scenario with only a moderate number of other vehicles. Detection works in principle, but some objects are missed - especially when they are rather further away from our ego vehicle. If they come closer detection performance increases. Although most of the objects in the video sequences are detected correctly, detection confidence is quite low, or lower than 50 %, respectively. This should be improved. Adding more suitable data samples would help.
 
 <img src="./experiments/experiment_1_00/segment-12012663867578114640_820_000_840_000.mp4" width="700" height="400" />
+
 *Fig. 13.2: Inference on test video sequence id 12012663867578114640 (downsampled by a factor of 10) using exported model from experiment_1_00*
 
 The second test video sequence shows a complex urban scenario with many traffic participants. Object detection works well here, but detection performance is very low for quite some objects (< 50 %), which means the detected object is probably not an object of the respective class. This should to be improved, for course.
 
 <img src="./experiments/experiment_1_00/segment-12200383401366682847_2552_140_2572_140.mp4" width="700" height="400" />
+
 *Fig. 13.3: Inference on test video sequence id 12200383401366682847 (downsampled by a factor of 10) using exported model from experiment_1_00*
 
 The third test video sequences shwos an urban scenario at night with a moderate number of traffic participants. Most of the objects are detected, except for some oncoming cars with their headlights on. They are often detected quite late compared to parking cars, which are not so safety relevant. It is good to see that object detection also works in principle at nighttime, however, a non-neglectible number of objects are detected with a confidence less than 50 %. So there is quite some room for further improvements.
