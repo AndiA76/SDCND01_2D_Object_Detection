@@ -89,9 +89,9 @@ The project directory itself is structured as follows:
     - download_tfrecords.py - script to only download the a set of tfrecord files frmo Waymo's open data set
     - edit_config.py - script to help modifying the pipeline.config file
     - Experimental_Results.md - writeup of the transfer learning experimental results
-    - Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb - exploratory data analysis of the original data set
-    - Exploratory_Data_Analysis_Part1.ipynb - exploratory data analysis (part 1) of stripped and downsampled training and validation data
-    - Exploratory_Data_Analysis_Part2.ipynb - exploratory data analysis (part 2) of stripped and downsampled training, validation and test subsets
+    - Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb - exploratory data analysis of the original raw data set 
+    - Exploratory_Data_Analysis_Part1.ipynb - exploratory data analysis (part 1) of stripped and downsampled training and validation data before splitting
+    - Exploratory_Data_Analysis_Part2.ipynb - exploratory data analysis (part 2) comparing the training and validation sub-set after splitting
     - Explore_Augmentations.ipynb - exploratory analysis of data augmentations options of the training pipeline
     - Explore_TF_Default_Augmentations.ipynb - exploratory analysis of augmentation options supported by TF Object Detection API
     - filenames.txt - list of source links to available tfrecord files in the Waymo open dataset
@@ -115,7 +115,7 @@ bash -i ./create_inference_videos.sh
 ### Data Set
 After having set up the docker environemnt, you can download e.g. the first 100 tfrecord files from a list of available tfrecord files (s, [filenames.txt](./filenames.txt)) from [Google Cloud Bucket](https://console.cloud.google.com/storage/browser/waymo_open_dataset_v_1_2_0_individual_files/). Each tfrecord file contains a multi-sensor data sequence recorded at a frame rate of 10 fps. For training an object detection model only the video data from the front camera including the corresponding meta data and ground truth labels is used. We will strip off the rest (e.g. lidar data).
 
-For training and cross-validation we will use 97 tfrecord files. For testing we will keep 3 tfrecord files that the model will not see during training. Assuming that subsequent images in a video sequence are very similar, the data for training and validation is downsampled only using 1 of every 10 images. For testing the video das is used as is without downsampling.
+For training and cross-validation we will use 97 tfrecord files. For testing, we will keep 3 tfrecord files that the model will not see during training. These 3 files are defined by Udacity and will not be altered. Assuming that subsequent images in a video sequence are very similar, the data for training and validation is downsampled only using 1 of every 10 images. For testing the video data is used as is without downsampling.
 
 ### Data Structure
 The data for training, cross-validation and testing will be organized as follows in the project:
@@ -199,20 +199,20 @@ Hints:
 `sudo chown -R username:group <directory or file(s)>` e.g. `sudo chown -R $USER:$USER <dir>` or `sudo chown -R $USER:$USER <dir>/*.*`
 
 ### Dataset Analysis
-As we loose information when stripping the data we first want to analyse the original Waymo data directly after download and before stripping and downsampling. This also gives a clear overview on the number of availabel images. The following modified third party tutorial gives an overview how to access the raw Waymo data [Explore_Raw_TFRecordFile.ipynb](./third_party/Explore_Raw_TFRecordFile.ipynb). The analysis results of the raw Waymo data can be found in this notebook [Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb](./Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb). It also contains a day / night analysis of the training, validation and test data sets.
+As we loose information when stripping the data we first want to analyse the original Waymo data directly after download and before stripping and downsampling. This also gives a clear overview on the number of availabel images. The following modified third party tutorial gives an overview how to access the raw Waymo data [Explore_Raw_TFRecordFile.ipynb](./third_party/Explore_Raw_TFRecordFile.ipynb). The analysis results of the raw Waymo data can be found in this notebook [Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb](./Exploratory_Data_Analysis_of_Original_Waymo_Data.ipynb). It also contains a data analysis of some high-level features (e.g. daytime / nighttime) contained in the training, validation and test data sub-sets used in this project.
 
-After stripping and downsampling the raw tfrecords we perform another exporatory data analysis on the training and validation data (before splitting). This analysis can be found in this notebook [Exploratory_Data_Analysis_Part1.ipynb](./Exploratory_Data_Analysis_Part1.ipynb). 
+After stripping and downsampling the raw tfrecords we perform another exporatory data analysis (part 1) on the overall training and validation data before splitting. This analysis can be found in this notebook [Exploratory_Data_Analysis_Part1.ipynb](./Exploratory_Data_Analysis_Part1.ipynb). 
 
-Another exporatory data analysis is done on the training, validation and test data sets after splitting in order to compare their statistical contents using this noteboook [Exploratory_Data_Analysis_Part2.ipynb](./Exploratory_Data_Analysis_Part2.ipynb). Ideally, each of the three data subsets should contain all relevant data aspects and have similar distribution of image and object properties as the other data subsets.
+A further exporatory data analysis (part 2) is done on the training and validation data sets after splitting in order to compare their statistical contents against one another using this noteboook [Exploratory_Data_Analysis_Part2.ipynb](./Exploratory_Data_Analysis_Part2.ipynb). Ideally, each of the data sub-sets should contain all relevant data aspects and show similar distributions of image and object properties as the other data sub-sets. The same would apply in principle for the test set, too, but as the tfrecord files in the test set are pre-defined, we take them as given examples.
 
 ### Cross-Validation Concept and Data Split
-The training and evaulation pipeline takes two sets of tfrecord files as input data for training and for evaluation, or cross-validation, respectively. If we don't break up all tfrecord files and mix all the images beforehand in order to create new mixed tfrecords for training and evaluation with a better balanced  distribution of data and object features we can only split among the existing tfrecord files. Here we choose the latter and easier option. We will just randomly split into subsets among the existing tfrecord files knowing that this may not lead to an optimal balance of data feature distribution in training, validation and test set. As we start with a fully pre-trained object detector just changing the number and types of object classes it should be sufficient to have a smaller training data set. We can leave a bit more for cross-validation. In this case, let's choose a split of approximately 5 : 1. So we randomly split the 97 tfrecord files into 82 files for training and 15 files for evaluation, or cross-validation, respectively. As this project only focuses on exploring some basic capabilities of TensorFlow Object Detection API without having the intention to optimize an object detection model this simple strategy should do for this purpose. However, this simple data strategy is certainly not sufficient for a real application!
+The training and evaulation pipeline takes two sets of tfrecord files as input data for training and for evaluation, or cross-validation, respectively. If we don't break up all tfrecord files and mix all the images beforehand in order to create new mixed tfrecords for training and evaluation with a better balanced  distribution of data and object features we can only split among the existing tfrecord files. Here we choose the latter and easier option. We will just randomly split into sub-sets among the existing tfrecord files knowing that this may not lead to an optimal balance of data feature distribution in training, validation and test set. As we start with a fully pre-trained object detector just changing the number and types of object classes it should be sufficient to have a smaller training data set. We can leave a bit more for cross-validation. In this case, let's choose a split of approximately 5 : 1. So we randomly split the 97 tfrecord files into 82 files for training and 15 files for evaluation, or cross-validation, respectively. As this project only focuses on exploring some basic capabilities of TensorFlow Object Detection API without having the intention to optimize an object detection model this simple strategy should do for this purpose. However, this simple data strategy is certainly not sufficient for a real application!
 
 The randomly split the data set you can use the `create_splits.py` script by running the following command:
 ```
 python create_splits.py \
     --source_dir {source directory where the set of processed tfrecord files to be split is stored} \
-    --target_dir {target directory where a train, val and evtl. test directory is created to store the split data subsets}  
+    --target_dir {target directory where a train, val and evtl. test directory is created to store the split data sub-sets}  
     --num_train_files {number of tfrecord files in the training data set} \
     --num_val_files {number of tfrecord files in the validation data set} \
     --num_test_files {number of tfrecord files in the test data set, if not set only a training and validation set will be created}
@@ -232,9 +232,9 @@ find . -xtype l
 ```
 There will be no output if there are no broken links. Alternatively you can use `ls -l`. It will show you broken links in red color in linux.
 
-After splitting we analyse the data subsets again in order to compare the distribution of the training an the valiation data set with one another (s. Dataset Analysis) The training and cross-valiation data sets should be independent but represent the same data domain. Thus, they should have a similar data distribution in order to provide a similar data coverage. This is not exactly the case here. Be we want to keep it simple. Otherwise we need to break up the tfrecord files beforehand, mix all images up contentwise and create new tfrecord files, which requires a larger effort. 
+After splitting we analyse the data sub-sets again in order to compare the distribution of the training an the valiation data set with one another (s. Dataset Analysis) The training and cross-valiation data sets should be independent but represent the same data domain. Thus, they should have a similar data distribution in order to provide a similar data coverage. This is not exactly the case here. Be we want to keep it simple. Otherwise we need to break up the tfrecord files beforehand, mix all images up contentwise and create new tfrecord files, which requires a larger effort. 
 
-In case all tfrecord files are processed with the same downsampling rate, you can also use `create_splits.py` to randomly split the tfrecord files into `train`, `val` and `test` subsets by running the following extended command:
+In case all tfrecord files are processed with the same downsampling rate, you can also use `create_splits.py` to randomly split the tfrecord files into `train`, `val` and `test` sub-sets by running the following extended command:
 
 ```
 python create_splits.py --source_dir /app/project/data/waymo/processed --target_dir /app/project/data/waymo --num_train_files 82 --num_val_files 15 --num_test_files 3
@@ -311,7 +311,7 @@ eval_config {
   ...
 }
 ```
-To monitor the training, you can launch a tensorboard instance by running `python -m tensorboard.main --logdir ./reference/` in the `experiments` folder. It will output a link which you can open in a browser window to visualize the tensor board.
+To monitor the training, you can launch a tensorboard instance by running `python -m tensorboard.main --logdir <path to model checkpoint dir>` or simply `tensorboard --logdir=<path to model checkpoint dir> in the `experiments` folder. It will output a link which you can open in a browser window to visualize the tensor board.
 
 
 ### Training Experiments using Different Options of TF Object Detection API
@@ -377,6 +377,6 @@ python inference_video.py \
 ```
 e.g.
 ```
-python inference_video.py --labelmap_path ./label_map.pbtxt --model_path ./experiments/experiment_0_00/exported_model/saved_model/ --tf_record_path /app/project/data/waymo/val/segment-10241508783381919015_2889_360_2909_360_with_camera_labels.tfrecord --config_path ./experiments/experiment_0_00/pipeline_experiment_0_00.config --output_path ./experiments/experiment_0_00/inference/videos/val/segment-10241508783381919015_2889_360_2909_360.gif
+python inference_video.py --labelmap_path ./label_map.pbtxt --model_path /app/project/experiments/experiment_0_00/exported_model/saved_model/ --tf_record_path /app/project/data/waymo/val/segment-10241508783381919015_2889_360_2909_360_with_camera_labels.tfrecord --config_path /app/project/experiments/experiment_0_00/pipeline_experiment_0_00.config --output_path /app/project/experiments/experiment_0_00/inference/videos/val/segment-10241508783381919015_2889_360_2909_360.mp4
 ```
 If you don't want to write lengthy commands or if you want to create inference videos on a larger set of tfrecord files in a folder you can also use the following bash script: `create_inference_videos.sh`.
