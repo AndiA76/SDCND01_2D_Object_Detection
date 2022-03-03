@@ -21,7 +21,7 @@ TensorFlow offers a set of in-built augmentation methods. The effect of a select
 ## Transfer Learning Experiments
 
 ### Evaluation of Transfer Learning Experiments
-In the following experiments PASCAL VOC metrics are used to evaluate the performance of the re-trained model on the validation set. They allow for a class-wise evalution of the average precision AP@0.5IOU metric obtained from the precision-recall curve as well as the mean average precision value mAP@0.5IOU, which is the average precision AP@0.5IOU averaged over all classes. Howe these object detection metrics are calculated is shown here: [Object-Detection-Metrics](https://github.com/rafaelpadilla/Object-Detection-Metrics).
+In the following experiments PASCAL VOC metrics are used to evaluate the performance of the re-trained model on the validation set. They allow for a class-wise evalution of the average precision AP@.5IOU metric (meaning AP with IOU threshold = 0.5) obtained from the precision-recall curve as well as the mean average precision value mAP@.5IOU, which is the average precision AP@.5IOU averaged over all classes. Howe these object detection metrics are calculated is shown here: [Object-Detection-Metrics](https://github.com/rafaelpadilla/Object-Detection-Metrics).
 
 ### Exeriments on Optimizer and Batch Size Settings
 The first five experiments focus on the optimizer and scheduler settings mainly focusing on the learning rate as well as on testing different batch sizes using the SSD ResNet50 V1 FPN 640x640 (RetinaNet50). In general, larger batch sizes yield better training performance, but are they are limited by the available GPU resources. I am using a local setup with an NVIDIA GeForce GTX 1080 Ti GPU with 12 GB memory.
@@ -63,10 +63,10 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.4576 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.0394 |
-| Loss/classification_loss | 0.4010 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0476 |
-| Loss/regularization_loss | 1.0733 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0312 |
-| Loss/total_loss | 1.9319 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.4576 |  | PascalBoxes_Precision/mAP@.5IOU | 0.0394 |
+| Loss/classification_loss | 0.4010 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0476 |
+| Loss/regularization_loss | 1.0733 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.0312 |
+| Loss/total_loss | 1.9319 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 0.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_00*
 
@@ -99,17 +99,17 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.4154 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.0646 |
-| Loss/classification_loss | 0.3568 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0585 |
-| Loss/regularization_loss | 0.1836 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0707 |
-| Loss/total_loss | 0.9558 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.4154 |  | PascalBoxes_Precision/mAP@.5IOU | 0.0646 |
+| Loss/classification_loss | 0.3568 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0585 |
+| Loss/regularization_loss | 0.1836 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.0707 |
+| Loss/total_loss | 0.9558 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 1.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_01*
 
 *Discussion:*
 * Using a constant learning rate of 0.01 instead of a cosine decay learning rate leads to a lower loss after 25000 steps. Therefore, the base learning rate of the pervious setting was too high for this optimization problem.
 * The evaluation loss on the final checkpoint is very close to the training loss. So there is no overfitting.
-* The model shows better performance after training than the initial pre-trained model - especially in detecting pedestrians (s. fig. 1.2), but the overall mAP@0.5IOU performance seems to be still very low.
+* The model shows better performance after training than the initial pre-trained model - especially in detecting pedestrians (s. fig. 1.2), but the overall mAP@.5IOU performance seems to be still very low.
 
 #### Experiment_0_02
 
@@ -133,18 +133,18 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.4158 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.1153 |
-| Loss/classification_loss | 0.3721 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0723 |
-| Loss/regularization_loss | 0.1341 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.1584 |
-| Loss/total_loss | 0.9220 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.4158 |  | PascalBoxes_Precision/mAP@.5IOU | 0.1153 |
+| Loss/classification_loss | 0.3721 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0723 |
+| Loss/regularization_loss | 0.1341 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.1584 |
+| Loss/total_loss | 0.9220 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 2.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_02*
 
 *Discussion:*
 * When looking at the training loss curve over the number of training steps a larger peak is striking out. Here, loss skyrockets quickly because the momentum optimizer might have hopped out of a local minimum due to too high a learning rate or too high a momentum value. Lowering the learning rate or a different optimizer might yield better results.
-* A larger batch size reduces the training and evaluation loss and yields a noticable improvement of the mAP@0.5IOU performance.
+* A larger batch size reduces the training and evaluation loss and yields a noticable improvement of the mAP@.5IOU performance.
 * Evaluation and training loss are almost identical after 24000 steps, which is quit good.
-* However, in general model performance w.r.t. mAP@0.5IOU is still quite low.
+* However, in general model performance w.r.t. mAP@.5IOU is still quite low.
 
 #### Experiment_0_03
 
@@ -168,10 +168,10 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.9672 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.0004 |
-| Loss/classification_loss | 13.1453 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0008 |
-| Loss/regularization_loss | 0.2624 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0000 |
-| Loss/total_loss | 14.3748 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.9672 |  | PascalBoxes_Precision/mAP@.5IOU | 0.0004 |
+| Loss/classification_loss | 13.1453 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0008 |
+| Loss/regularization_loss | 0.2624 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.0000 |
+| Loss/total_loss | 14.3748 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 3.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_03*
 
@@ -229,10 +229,10 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.3929 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.1113 |
-| Loss/classification_loss | 0.3590 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0677 |
-| Loss/regularization_loss | 0.2263 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.1548 |
-| Loss/total_loss | 0.9783 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.3929 |  | PascalBoxes_Precision/mAP@.5IOU | 0.1113 |
+| Loss/classification_loss | 0.3590 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0677 |
+| Loss/regularization_loss | 0.2263 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.1548 |
+| Loss/total_loss | 0.9783 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 4.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_04*
 
@@ -280,10 +280,10 @@ Data augmentation setting: default settings that come with ssd_resnet50_v1_fpn_6
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss |  0.4644 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.0544 |
-| Loss/classification_loss | 0.3793 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0544 |
-| Loss/regularization_loss | 0.5891 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0545 |
-| Loss/total_loss | 1.4328 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss |  0.4644 |  | PascalBoxes_Precision/mAP@.5IOU | 0.0544 |
+| Loss/classification_loss | 0.3793 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0544 |
+| Loss/regularization_loss | 0.5891 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.0545 |
+| Loss/total_loss | 1.4328 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 5.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_05*
 
@@ -369,19 +369,19 @@ Data augmentation setting:
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.4522 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.0568 |
-| Loss/classification_loss | 0.3577 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0498 |
-| Loss/regularization_loss | 0.5723 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0637 |
-| Loss/total_loss | 1.3822 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.4522 |  | PascalBoxes_Precision/mAP@.5IOU | 0.0568 |
+| Loss/classification_loss | 0.3577 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0498 |
+| Loss/regularization_loss | 0.5723 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.0637 |
+| Loss/total_loss | 1.3822 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 6.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_06*
 
 *Discussion:* 
 * Besides random image crop and random horizontal flip further image augmentation methdos are applied focusing on enlarging the spectrum of hue, saturation, brightness, or contrast, for example, plus adding some jitter on the bounding boxes to simulate labeling errors.
-* Actually, it was expected that color-based augmentation might noticably improve the training results. However, the overall results only improve a tiny bit compared to experiment_0_04. The AP@0.5IOU performance on vehicles even decreases a little, whereas the AP@0.5IOU performance on pedestrians slightly increases.
+* Actually, it was expected that color-based augmentation might noticably improve the training results. However, the overall results only improve a tiny bit compared to experiment_0_04. The AP@.5IOU performance on vehicles even decreases a little, whereas the AP@.5IOU performance on pedestrians slightly increases.
 * A possible reason can be that the measure of adding random jitter on the bounding boxes acts contraproductive and makes things rather worse as it deteriorates ground truth. A slightly higher localization loss compared to experiment_0_04 can be interpreted as another supporting indicator for this hypothesis.
 * It is also possible that we need to increase the number of training steps when applying augmentation.
-* AP@0.5IOU performance on cyclists is still NaN leading to the conclusion that they are underrepresented in the training data such they are not adequately learned by the model.
+* AP@.5IOU performance on cyclists is still NaN leading to the conclusion that they are underrepresented in the training data such they are not adequately learned by the model.
 
 #### Experiment 0.07
 
@@ -434,10 +434,10 @@ Data augmentation setting:
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.4336 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.0707 |
-| Loss/classification_loss | 0.3381 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0545 |
-| Loss/regularization_loss | 0.8293 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.0870 |
-| Loss/total_loss | 1.6010 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.4336 |  | PascalBoxes_Precision/mAP@.5IOU | 0.0707 |
+| Loss/classification_loss | 0.3381 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0545 |
+| Loss/regularization_loss | 0.8293 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.0870 |
+| Loss/total_loss | 1.6010 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 7.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_07*
 
@@ -499,16 +499,16 @@ Data augmentation setting:
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.3624 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.1540 |
-| Loss/classification_loss | 0.2656 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0726 |
-| Loss/regularization_loss | 0.1826 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.2354 |
-| Loss/total_loss | 0.8106 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.3624 |  | PascalBoxes_Precision/mAP@.5IOU | 0.1540 |
+| Loss/classification_loss | 0.2656 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0726 |
+| Loss/regularization_loss | 0.1826 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.2354 |
+| Loss/total_loss | 0.8106 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 8.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_08*
 
 *Discussion:* 
 * In experiment_0_08 we don't use color distortion. Instead, we focus on cropping, rotating and flipping the images, which changes the object sizes and aspect ratios as well as their location.
-* Here we get a noticable improvement compared to experiment_0_04, experiment_0_06 or experiment_0_07 - especially w.r.t. AP@0.5IOU on pedestrians. Changing the object size, aspect ratio or location seems to have a stronger effect on the training as color distortions.
+* Here we get a noticable improvement compared to experiment_0_04, experiment_0_06 or experiment_0_07 - especially w.r.t. AP@.5IOU on pedestrians. Changing the object size, aspect ratio or location seems to have a stronger effect on the training as color distortions.
 
 
 ### Evaluation Metrics
@@ -551,10 +551,10 @@ Data augmentation setting: same as in experiment_0_06
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.3496|  | PascalBoxes_Precision/mAP@0.5IOU | 0.1492 |
-| Loss/classification_loss | 0.2860 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0728 |
-| Loss/regularization_loss | 0.1932 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.2257 |
-| Loss/total_loss | x.x | 0.8288 | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | nan |
+| Loss/localization_loss | 0.3496|  | PascalBoxes_Precision/mAP@.5IOU | 0.1492 |
+| Loss/classification_loss | 0.2860 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0728 |
+| Loss/regularization_loss | 0.1932 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.2257 |
+| Loss/total_loss | x.x | 0.8288 | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | nan |
 
 *Table 9.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_0_09*
 
@@ -605,16 +605,16 @@ Data augmentation settings: default settings from efficientdt_d1_coco17_tpu-32
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.0160 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.1389 |
-| Loss/classification_loss | 0.2839 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0678 |
-| Loss/regularization_loss | 0.0286 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.2867 |
-| Loss/total_loss | 0.3285 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | 0.0623 |
+| Loss/localization_loss | 0.0160 |  | PascalBoxes_Precision/mAP@.5IOU | 0.1389 |
+| Loss/classification_loss | 0.2839 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0678 |
+| Loss/regularization_loss | 0.0286 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.2867 |
+| Loss/total_loss | 0.3285 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | 0.0623 |
 
 *Table 10.1: Evaluation results on validation set at step 30000 using Pascal VOC metrics for experiment_1_00*
 
 *Discussion:* 
 * Some initial experiments with the changed model shwoed that the efficientdet_d1_coco17_tpu-32 model requires a lower step size than ssd_resnet50_v1_fpn_640x640_coco17_tpu-8. In our first documented experiment we use a learning rate of 0.005, which is 50% of the previous one.
-* Compared to experiment_0_00, the model change (including the adapted learning rate) leads to a noticably higher mAP@0.5IOU performance.
+* Compared to experiment_0_00, the model change (including the adapted learning rate) leads to a noticably higher mAP@.5IOU performance.
 * As the training process has not fully converged the slightly increased number of training steps has a little contribution on the improvement.
 * This time we also have some cyclists detected with sufficient confidence and IOU in order to contribute to a metric value other than NaN.
 
@@ -654,10 +654,10 @@ Data augmentation settings: default settings from efficientdt_d1_coco17_tpu-32 a
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.0183 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.0725 |
-| Loss/classification_loss | 0.3915 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0584 |
-| Loss/regularization_loss | 0.0417 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.1582|
-| Loss/total_loss | 0.4514 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | 0.0008 |
+| Loss/localization_loss | 0.0183 |  | PascalBoxes_Precision/mAP@.5IOU | 0.0725 |
+| Loss/classification_loss | 0.3915 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0584 |
+| Loss/regularization_loss | 0.0417 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.1582|
+| Loss/total_loss | 0.4514 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | 0.0008 |
 
 *Table 11.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_1_01*
 
@@ -760,10 +760,10 @@ Data augmentation settings: similar to experiment_0_09
 
 | Loss function | Loss value | | Evaluation metric | Metric value |
 | :----: | :----: | :----: | :----: | :----: |
-| Loss/localization_loss | 0.0168 |  | PascalBoxes_Precision/mAP@0.5IOU | 0.1260 |
-| Loss/classification_loss | 0.2696 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/vehicle | 0.0697 |
-| Loss/regularization_loss | 0.0292 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/pedestrian | 0.2756 |
-| Loss/total_loss | 0.3155 |  | PascalBoxes_PerformanceByCategory/AP@0.5IOU/cyclist | 0.0328 |
+| Loss/localization_loss | 0.0168 |  | PascalBoxes_Precision/mAP@.5IOU | 0.1260 |
+| Loss/classification_loss | 0.2696 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/vehicle | 0.0697 |
+| Loss/regularization_loss | 0.0292 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/pedestrian | 0.2756 |
+| Loss/total_loss | 0.3155 |  | PascalBoxes_PerformanceByCategory/AP@.5IOU/cyclist | 0.0328 |
 
 *Table 12.1: Evaluation results on validation set at step 24000 using Pascal VOC metrics for experiment_1_02*
 
@@ -773,7 +773,7 @@ Data augmentation settings: similar to experiment_0_09
 
 ### Summary
 In summary, a set of transfer learning experiments has been done using two different SSD models re-trained on a very small selected Waymo training data set. In general, the overall performance on our very small training data set is rather low. If much more data had been used the results would surely be better. This could be achieved by using the whole available Waymo dataset and not just a sub-set. With respect to data augmentation, cropping and resizing, flipping and rotation have a stronger effect in inducing variety than just augmentation of color values as this also increases the variety of the trained spectrum of SSD anchor box aspect ratios.
-As we do not target optimizing the performance of a SSD model in this project, but rather experimenting with TensorFlow Object Detection API, model performnce is of second rank. Over all conducted experiments, experiment_0_08 and experiment_1_00 showed the best results on validation set so far. What is more, compared to eperiment_0_00...09 we also have a nonzero AP@0.5IOU detection performance for cyclists in experiment_1_00...02.
+As we do not target optimizing the performance of a SSD model in this project, but rather experimenting with TensorFlow Object Detection API, model performnce is of second rank. Over all conducted experiments, experiment_0_08 and experiment_1_00 showed the best results on validation set so far. What is more, compared to eperiment_0_00...09 we also have a nonzero AP@.5IOU detection performance for cyclists in experiment_1_00...02.
 
 ## Inference
 
