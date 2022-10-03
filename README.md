@@ -381,16 +381,16 @@ python inference_video.py --labelmap_path ./label_map.pbtxt --model_path /app/pr
 ```
 If you don't want to write lengthy commands or if you want to create inference videos on a larger set of tfrecord files in a folder you can also use the following bash script: `create_inference_videos.sh`.
 
-# License
+## License
 
-## Main Part
-Remarks: Since the the code in this repository was build on the [starter code](https://github.com/udacity/nd013-c1-vision-starter) provided by Udacity it automatically falls under the Udacity license, too:
+### Main Part
+Remarks: Since the the code in this repository was build on the [starter code](https://github.com/udacity/nd013-c1-vision-starter) provided by Udacity, it automatically falls under the Udacity license, too:
 
 [LICENSE.md](./LICENSE.md)
 
 This also applies to the changes, extensions or modifications implemented by the code owner, s. [CODEOWNERS](./CODEOWNERS).
 
-## Third Party Part
+### Third Party Part
 The tutorial how to explore TFRecordFiles [Explore_Raw_TFRecordFile.ipynb](./third_party/Explore_Raw_TFRecordFile.ipynb) was created based on the tutorials taken over from Waymo open dataset tutorials, and thus, falls under the respective WAYMO license:
 
 [LICENSE_WAYMO-OPEN-DATASET-TUTORIALS](./third_party/LICENSE_WAYMO-OPEN-DATASET-TUTORIALS)
